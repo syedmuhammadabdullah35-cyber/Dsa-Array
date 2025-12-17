@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced DSA Array Example</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input, button { margin: 5px; padding: 8px; }
+    .output { background: #f4f4f4; padding: 10px; margin-top: 10px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+  <h2>DSA Array Operations</h2>
+
+  <input type="text" id="userValue" placeholder="Enter a number" />
+  <br>
+
+  <!-- Stack -->
+  <button id="stackPush">Stack Push</button>
+  <button id="stackPop">Stack Pop</button>
+
+  <!-- Queue -->
+  <button id="queueEnq">Queue Enqueue</button>
+  <button id="queueDeq">Queue Dequeue</button>
+
+  <!-- Search & Sort -->
+  <button id="searchBtn">Search</button>
+  <button id="sortAsc">Sort Asc</button>
+  <button id="sortDesc">Sort Desc</button>
+
+  <!-- Reset -->
+  <button id="resetBtn">Reset</button>
+
+  <div class="output" id="result"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script>
+    let numbers = [10, 20, 30, 40];
+
+    function updateResult(message = "") {
+      document.getElementById("result").innerHTML =
+        message + "<br> Current Array: [" + numbers.join(", ") + "]";
+    }
+
+    // Initial render
+    updateResult("Initial Array");
+
+    // STACK OPERATIONS
+    document.getElementById("stackPush").addEventListener("click", () => {
+      let value = document.getElementById("userValue").value;
+      if (value) {
+        numbers.push(value);
+        updateResult("Stack Push → " + value);
+      } else {
+        updateResult("Enter a number to Push");
+      }
+    });
+
+    document.getElementById("stackPop").addEventListener("click", () => {
+      if (numbers.length > 0) {
+        let removed = numbers.pop();
+        updateResult("Stack Pop → " + removed);
+      } else {
+        updateResult("Stack is empty");
+      }
+    });
+
+    // QUEUE OPERATIONS
+    document.getElementById("queueEnq").addEventListener("click", () => {
+      let value = parseInt(document.getElementById("userValue").value);
+      if (!isNaN(value)) {
+        numbers.push(value);
+        updateResult("Queue Enqueue → " + value);
+      } else {
+        updateResult("Enter a number to Enqueue");
+      }
+    });
+
+    document.getElementById("queueDeq").addEventListener("click", () => {
+      if (numbers.length > 0) {
+        let removed = numbers.shift();
+        updateResult("Queue Dequeue → " + removed);
+      } else {
+        updateResult("Queue is empty");
+      }
+    });
+
+    // SEARCH
+    document.getElementById("searchBtn").addEventListener("click", () => {
+      let value = document.getElementById("userValue").value;
+      if ((value)) {
+        let index = numbers.indexOf(value);
+        if (index !== -1) {
+          updateResult("Found " + value + " at index " + index);
+        } else {
+          updateResult(value + " not found in array");
+        }
+      } else {
+        updateResult("Enter a number to Search");
+      }
+    });
+
+    // SORTING
+    document.getElementById("sortAsc").addEventListener("click", () => {
+      numbers.sort((a, b) => a - b);
+      updateResult("Sorted Ascending");
+    });
+
+    document.getElementById("sortDesc").addEventListener("click", () => {
+      numbers.sort((a, b) => b - a);
+      updateResult("Sorted Descending");
+    });
+
+    // RESET
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      numbers = [10, 20, 30, 40];
+      updateResult("Array Reset");
+    });
+  </script>
+
+</body>
+</html>
